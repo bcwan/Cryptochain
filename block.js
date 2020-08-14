@@ -1,4 +1,5 @@
 const { GENESIS_DATA } = require('./config');
+const cryptoHash = require('./crypto-hash');
 
 class Block {
   // wrapping parameters into objects allows us to put input arguments in any order upon creation
@@ -15,10 +16,14 @@ class Block {
   }
 
   static mineBlock( { lastBlock, data }) {
+    const timestamp = Date.now();
+    const lastHash = lastBlock.hash;
+
     return new this({
-      timestamp: Date.now(),
-      lastHash: lastBlock.hash,
-      data
+      timestamp,
+      lastHash,
+      data,
+      hash: cryptoHash(timestamp, lastHash, data)
     });
   }
 }
