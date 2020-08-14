@@ -1,3 +1,5 @@
+const { GENESIS_DATA } = require('./config');
+
 class Block {
   // wrapping parameters into objects allows us to put input arguments in any order upon creation
   constructor({ timestamp, lastHash, hash, data }) {
@@ -5,6 +7,11 @@ class Block {
     this.lastHash = lastHash;
     this.hash = hash;
     this.data = data;
+  }
+
+  // factory method because we are calling on an instance of the class
+  static genesis() {
+    return new Block(GENESIS_DATA);
   }
 }
 
