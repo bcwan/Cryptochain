@@ -4,7 +4,7 @@
   "description": "* [General info](#general-info) * [Screenshots](#screenshots) * [Technologies](#technologies) * [Setup](#setup) * [Features](#features) * [Status](#status) * [Inspiration](#inspiration)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --watchAll"
   },
   "repository": {
     "type": "git",
