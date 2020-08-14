@@ -1,4 +1,4 @@
-# Cryptocurrency
+# Cryptochain
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
@@ -9,7 +9,7 @@
 * [Inspiration](#inspiration)
 
 ## General info
-Cryptocurrency built with JavaScript and front-end tools like React and Redux.
+A cryptocurrency built with JavaScript and front-end tools like React and Redux.
 
 [Live Link]()
 
