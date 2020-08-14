@@ -24,3 +24,9 @@ class Blockchain {
     this.chain.push(block);
   }
 }
+
+const fooBlockchain = new Blockchain();
+fooBlockchain.addBlock('one');
+fooBlockchain.addBlock('two');
+fooBlockchain.addBlock('three');
+console.log(fooBlockchain);
