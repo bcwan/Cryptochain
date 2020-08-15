@@ -41,13 +41,17 @@ class Blockchain {
   replaceChain(chain) {
     // if chain length is shorter or equivalent, no need for change and also it doesn't meet our rules
     if (chain.length <= this.chain.length) {
+      console.error('The incoming chain must be longer');
       return;
     }
 
     // if hashes or data is altered, ignore and exit out of the chain
     if (!Blockchain.isValidChain(chain)) {
+      console.error('The incoming chain must be valid');
       return;
     }
+
+    console.log('Replacing chain with', chain)
     // replace the updated chain with the new and longer chain
     this.chain = chain;
   }
