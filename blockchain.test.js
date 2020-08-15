@@ -67,6 +67,19 @@ describe('Blockchain', () => {
 
   describe('replaceChain()', () => {
     // if it's not longer, then there's not need for change
+    let errorMock;
+    let logMock;
+
+    // create jest methods to quiet down the error and logging, and using these mocks to prove
+    // that the errors and logs were called
+    beforeEach(() => {
+      errorMock = jest.fn();
+      logMock = jest.fn();
+
+      global.console.error = errorMock;
+      global.console.log = logMock;
+    });
+
     describe('when the new chain is not longer', () => {
       it('does not replace the chain', () => {
         // change the original chain
