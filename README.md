@@ -1,4 +1,4 @@
-# Cryptochain
+# CryptoChain
 ## Table of contents
 * [General info](#general-info)
 * [Screenshots](#screenshots)
