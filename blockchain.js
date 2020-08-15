@@ -25,7 +25,7 @@ class Blockchain {
     for (let i = 1; i < chain.length; i++) {
       const block = chain[i];
       const actualLastHash = chain[i - 1].hash;
-      
+
       // check to see if the lastHash is consistant to previous blocks hash
       const { timestamp, lastHash, hash, data } = block;
       if (lastHash !== actualLastHash) return false;
@@ -35,6 +35,11 @@ class Blockchain {
       if (hash !== validatedHash) return false;
     }
     return true;
+  }
+  
+  // not static because it's based on an instance of an object
+  replaceChain(chain) {
+
   }
 }
 

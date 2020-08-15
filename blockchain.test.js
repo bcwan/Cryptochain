@@ -82,16 +82,20 @@ describe('Blockchain', () => {
         newChain.addBlock({ data: 'Beets' });
         newChain.addBlock({ data: 'Battlestar Galactica' });
       });
-      
+
       describe('and the chain is invalid', () => {
         it('does not replace the chain', () => {
-
+          newChain.chain[2].hash = 'some-fake-hash';
+          blockchain.replaceChain(newChain.chain);
+          expect(blockchain.chain).toEqual(originalChain);
         });
       });
 
+      // if new chain is longer than original and hashes and data matches, it's valid
       describe('and the chain is valid', () => {
         it('replaces the chain', () => {
-
+          blockchain.replaceChain(newChain.chain);
+          expect(blockchain.chain).toEqual(newChain.chain);
         });
       });
     });
