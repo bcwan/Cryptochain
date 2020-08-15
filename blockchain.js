@@ -39,7 +39,17 @@ class Blockchain {
   
   // not static because it's based on an instance of an object
   replaceChain(chain) {
+    // if chain length is shorter or equivalent, no need for change and also it doesn't meet our rules
+    if (chain.length <= this.chain.length) {
+      return;
+    }
 
+    // if hashes or data is altered, ignore and exit out of the chain
+    if (!Blockchain.isValidChain(chain)) {
+      return;
+    }
+    // replace the updated chain with the new and longer chain
+    this.chain = chain;
   }
 }
 
