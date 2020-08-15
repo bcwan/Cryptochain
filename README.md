@@ -52,4 +52,4 @@ To-do list:
 Project is: _in progress_. 
 
 ## Inspiration
-Project was inspired by Bitcoin, Decred, and Ethereum. [Link to Blockchain view]()
+Project is inspired by Bitcoin, Decred, and Ethereum. [Link to Blockchain view]()
