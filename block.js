@@ -18,10 +18,20 @@ class Block {
   }
 
   static mineBlock( { lastBlock, data }) {
-    const timestamp = Date.now();
+
+    let hash;
+    let timestamp;
+
     const lastHash = lastBlock.hash;
     const { difficulty } = lastBlock;
     let nonce = 0;
+
+    // keep generating hash until it meets difficulty
+    do {
+      nonce++;
+      timestamp = Date.now();
+      hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
+    } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
 
     return new this({
       timestamp,
