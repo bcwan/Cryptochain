@@ -27,11 +27,11 @@ class Blockchain {
       const actualLastHash = chain[i - 1].hash;
 
       // check to see if the lastHash is consistant to previous blocks hash
-      const { timestamp, lastHash, hash, data } = block;
+      const { timestamp, lastHash, hash, data, nonce, difficulty  } = block;
       if (lastHash !== actualLastHash) return false;
 
       // checks to see if hash matches
-      const validatedHash = cryptoHash(timestamp, lastHash, data);
+      const validatedHash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
       if (hash !== validatedHash) return false;
     }
     return true;

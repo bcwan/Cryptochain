@@ -20,12 +20,16 @@ class Block {
   static mineBlock( { lastBlock, data }) {
     const timestamp = Date.now();
     const lastHash = lastBlock.hash;
+    const { difficulty } = lastBlock;
+    let nonce = 0;
 
     return new this({
       timestamp,
       lastHash,
       data,
-      hash: cryptoHash(timestamp, lastHash, data)
+      difficulty,
+      nonce,
+      hash: cryptoHash(timestamp, lastHash, data, nonce, difficulty)
     });
   }
 }
