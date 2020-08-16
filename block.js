@@ -18,18 +18,18 @@ class Block {
   }
 
   static mineBlock( { lastBlock, data }) {
-
+    const lastHash = lastBlock.hash;
     let hash;
     let timestamp;
-
-    const lastHash = lastBlock.hash;
-    const { difficulty } = lastBlock;
+    let { difficulty } = lastBlock;
     let nonce = 0;
 
     // keep generating hash until it meets difficulty
     do {
       nonce++;
       timestamp = Date.now();
+      // difficulty will dynamically change based on timestamp of previous block and next
+      difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
       hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
     } while (hash.substring(0, difficulty) !== '0'.repeat(difficulty));
 
@@ -46,12 +46,13 @@ class Block {
   // adjust difficulty based on how long it takes to make a block
   static adjustDifficulty({ originalBlock, timestamp }) {
     const { difficulty } = originalBlock;
+    // if we ever encounter a situation where difficulty becomes 0 or lower, set it back to 1
+    if (difficulty < 1) return 1;
     const difference = timestamp - originalBlock.timestamp;
     if (difference > MINE_RATE) {
       return difficulty - 1;
-    } else if (difference < MINE_RATE) {
-      return difficulty + 1;
     }
+    return difficulty + 1;
   }
 }
 

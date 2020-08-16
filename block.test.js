@@ -12,7 +12,7 @@ describe('Block', () => {
 
   const block = new Block({ timestamp, lastHash, hash, data, nonce, difficulty });
 
-  it('has a timestamp, lastHash, hash, and a data property', () => {
+  it('has a timestamp, lastHash, hash, nonce, difficulty, and a data property', () => {
     expect(block.timestamp).toEqual(timestamp);
     expect(block.lastHash).toEqual(lastHash);
     expect(block.hash).toEqual(hash);
@@ -71,7 +71,12 @@ describe('Block', () => {
     it('sets a `hash` that matches the difficulty criteria', () => {
       expect(minedBlock.hash.substring(0, minedBlock.difficulty))
         .toEqual('0'.repeat(minedBlock.difficulty));
-    }) 
+    });
+
+    it('adjusts the difficulty', () => {
+      let possibleResults = [lastBlock.difficulty + 1, lastBlock.difficulty - 1];
+      expect(possibleResults.includes(minedBlock.difficulty)).toBe(true);
+    });
 
   });
 
@@ -86,6 +91,11 @@ describe('Block', () => {
       expect(Block.adjustDifficulty({
         originalBlock: block, timestamp: block.timestamp + MINE_RATE + 100
       })).toEqual(block.difficulty - 1);
+    });
+
+    it('has a lower limit of 1', () => {
+      block.difficulty = -1;
+      expect(Block.adjustDifficulty({ originalBlock: block })).toEqual(1);
     });
   });
 
