@@ -26,6 +26,9 @@ class Blockchain {
       const block = chain[i];
       const actualLastHash = chain[i - 1].hash;
 
+      // get last difficulty to make sure malicious user won't change it
+      const lastDifficulty = chain[i - 1].difficulty;
+
       // check to see if the lastHash is consistant to previous blocks hash
       const { timestamp, lastHash, hash, data, nonce, difficulty  } = block;
       if (lastHash !== actualLastHash) return false;
@@ -33,6 +36,10 @@ class Blockchain {
       // checks to see if hash matches
       const validatedHash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
       if (hash !== validatedHash) return false;
+
+      // prevents difficulties from going too low, which is what malicious users want
+      // also prevents difficulties from going to high, because blocks are slowly mined then, freezing the blockchain
+      if (Math.abs(lastDifficulty - difficulty) > 1) return false; 
     }
     return true;
   }
