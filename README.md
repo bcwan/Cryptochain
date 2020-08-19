@@ -20,6 +20,7 @@ A cryptocurrency built with JavaScript and front-end tools like React and Redux.
 * JavaScript ES6
 * React
 * Redux
+* Express
 * Jest (for TDD development)
 
 ## Setup
