@@ -1,6 +1,6 @@
 // npm crypto library
 const crypto = require('crypto');
-const hextToBinary = require('hex-to-binary');
+const hexToBinary = require('hex-to-binary');
 
 const cryptoHash = (...inputs) => {
   // inport SHA-256 algorithm
