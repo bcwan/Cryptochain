@@ -32,7 +32,7 @@ class Block {
       // difficulty will dynamically change based on timestamp of previous block and next
       difficulty = Block.adjustDifficulty({ originalBlock: lastBlock, timestamp });
       hash = cryptoHash(timestamp, lastHash, data, nonce, difficulty);
-      // convert hex to binary form for harder proof of work
+      // convert hex to binary form for harder proof of work, but hex hash is the same
     } while (hexToBinary(hash).substring(0, difficulty) !== '0'.repeat(difficulty));
 
     return new this({
