@@ -18,6 +18,9 @@
   },
   "homepage": "https://github.com/bcwan/Cryptocurrency#readme",
   "devDependencies": {
-    "jest": "^23.6.0"
+    "jest": "^26.4.0"
+  },
+  "dependencies": {
+    "hex-to-binary": "^1.0.1"
   }
 }
