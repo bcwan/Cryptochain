@@ -1,8 +1,12 @@
 const express = require('express');
+// middleware for express to parse JSON bodies
+const bodyParser = require('body-parser');
 const Blockchain = require('./blockchain');
 
 const app = express();
 const blockchain = new Blockchain();
+
+app.use(bodyParser.json());
 
 app.get('/api/blocks', (req, res) => {
   res.json(blockchain.chain);
